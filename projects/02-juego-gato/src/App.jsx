@@ -42,9 +42,9 @@ function App() {
       if (
         boardToCheck[a] &&
         boardToCheck[a] === boardToCheck[b] &&
-        boardToCheck[a] === boardToCheck[c]) {
-        setWinner(boardToCheck[a])
-        return true
+        boardToCheck[a] === boardToCheck[c]
+      ) {
+        return boardToCheck[a]
       }
     }
     // si no hay ganador
@@ -52,6 +52,11 @@ function App() {
 
   }
 
+  const resetGame = () => {
+     setBoard(Array(9).fill(null))
+     setTurn(TURNS.X)
+     setWinner(null)
+  }
 
   const updateBoard = (index) => {
     // no actualiza el estado si ya hay un valor
@@ -73,6 +78,7 @@ function App() {
   return (
     <main className="board">
       <h1>Tic Tac Toe</h1>
+      <button onClick={resetGame}> Reiniciar Partida </button>
       <section className="game">
         {
           board.map((_, index) => {
@@ -97,6 +103,29 @@ function App() {
         </Square>
 
       </section>
+      {
+        winner !== null && (
+          <section className="winner">
+            <div className="text">
+              <h2>
+                {
+                  winner === false
+                    ? 'Empate'
+                    : 'Ganador:'
+                }
+              </h2>
+
+              <header className="win">
+                {winner && <Square>{winner}</Square>}
+              </header>
+
+              <footer>
+                <button onClick={resetGame}> Empezar de nuevo </button>
+              </footer>
+            </div>
+          </section>
+        )
+      }
     </main>
   )
 }
