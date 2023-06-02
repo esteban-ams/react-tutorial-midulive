@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/esteban-ams/react-tutorial-midulive/issues"
   },
-  "homepage": "https://github.com/esteban-ams/react-tutorial-midulive#readme"
+  "homepage": "https://github.com/esteban-ams/react-tutorial-midulive#readme",
+  "devDependencies": {
+    "standard": "^17.1.0"
+  },
+  "eslintConfig": {
+    "extends" : "./node_modules/standard/eslintrc.json"
+  }
 }
