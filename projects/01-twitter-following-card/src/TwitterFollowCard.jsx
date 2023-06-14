@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 export function TwitterFollowCard ({ children, userName }) {
   const [isFollowing, setIsFollowing] = useState(false)
@@ -8,29 +8,30 @@ export function TwitterFollowCard ({ children, userName }) {
     ? 'tw-followCard-button is-following'
     : 'tw-followCard-button'
 
-    const handleClick = () => {
-      setIsFollowing(!isFollowing)
-    }
+  const handleClick = () => {
+    setIsFollowing(!isFollowing)
+  }
 
-    return (
-        <article className='tw-followCard'>
-            <header className='tw-followCard-header'>
-              <img
-                className='tw-followCard-avatar'
-                alt={`El avatar de ${userName}`}
-                src={`https://unavatar.io/${userName}`} />
-                <div className='tw-followCard-info'>
-                  <strong>{children} </strong>
-                  <span className='tw-followCard-infoUserName'>@{userName}</span>
-                </div>
-            </header>
+  return (
+    <article className='tw-followCard'>
+      <header className='tw-followCard-header'>
+        <img
+          className='tw-followCard-avatar'
+          alt={`El avatar de ${userName}`}
+          src={`https://unavatar.io/${userName}`}
+        />
+        <div className='tw-followCard-info'>
+          <strong>{children} </strong>
+          <span className='tw-followCard-infoUserName'>@{userName}</span>
+        </div>
+      </header>
 
-            <aside>
-              <button className={buttonClassName} onClick={handleClick}>
-                {text}
-              </button>
-            </aside>
-        </article>
+      <aside>
+        <button className={buttonClassName} onClick={handleClick}>
+          {text}
+        </button>
+      </aside>
+    </article>
 
-    )
+  )
 }
