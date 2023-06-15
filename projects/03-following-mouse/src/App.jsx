@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 const FollowMouse = () => {
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
-
+  // pointer mover
   useEffect(() => {
     console.log('efecto', { enabled })
 
@@ -20,6 +20,14 @@ const FollowMouse = () => {
     return () => {
       console.log('desmontado')
       window.removeEventListener('pointermove', handleMove)
+    }
+  }, [enabled])
+  // change cursor style
+  useEffect(() => {
+    document.body.classList.toggle('no-cursor', enabled)
+
+    return () => {
+      document.body.classList.remove('no-cursor')
     }
   }, [enabled])
 
