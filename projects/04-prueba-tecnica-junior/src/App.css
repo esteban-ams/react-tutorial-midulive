@@ -1,0 +1,19 @@
+main {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  max-width: fit-content;
+  margin: 0 auto;
+  font-family: system-ui;
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
