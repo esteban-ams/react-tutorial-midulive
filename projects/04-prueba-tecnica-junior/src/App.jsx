@@ -1,46 +1,28 @@
-import { useEffect, useState } from 'react'
 import './App.css'
+import { Otro } from './Components/Otro'
+import { useCatFact } from './hooks/useCatFact'
+import { useCatImage } from './hooks/useCatImage'
 
-const CAT_ENDPOINT_RANDOM = 'https://catfact.ninja/fact'
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
-// const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${anyFact}?size=50&color=red&json=true`
 
-function App() {
-  const [fact, setFact] = useState()
-  const [factBool, setFactBool] = useState(false)
-  const [imageUrl, setImageUrl] = useState()
+export function App() {
+  const { fact, refreshFact } = useCatFact()
+  const { imageUrl } = useCatImage({ fact })
 
-  useEffect(() => {
-    fetch(CAT_ENDPOINT_RANDOM)
-      .then(res => res.json())
-      .then(data => {
-        const { fact } = data
-        setFact(fact)
-        setFactBool(true)
-      })
-  }, [factBool])
-
-  useEffect(() => {
-    if (!fact) return
-    const threeFirstWord = fact.split(' ', 3).join(' ')
-    console.log("file: App.jsx:17 ~ useEffect ~ firstWord:", threeFirstWord)
-
-    fetch(`https://cataas.com/cat/says/${threeFirstWord}?size=50&color=red&json=true`)
-      .then(res => res.json())
-      .then(response => {
-        console.log("file: App.jsx:24 ~ useEffect ~ response:", response)
-        const { url } = response
-        setImageUrl(url)
-      })
-  }, [fact])
+  // recupera una nueva fact al hacer click
+  const handleClick = async () => {
+    refreshFact()
+  }
 
   return (
     <main>
       <h1>App de Gatitos</h1>
-      {factBool && <button onClick={() => setFactBool(false)}><span>Get a new fact</span></button>}
+      {fact && <button onClick={handleClick}><span>Get a new fact</span></button>}
 
       {fact && <p>{fact}</p>}
-      {imageUrl && <img src={`${CAT_PREFIX_IMAGE_URL}${imageUrl}`} alt={`Image using the 3 first words of ${fact} from the API`} />}
+      {imageUrl && <img src={imageUrl} alt={`Image using the 3 first words of ${fact} from the API`} />}
+
+      <Otro />
     </main>
   )
 }
