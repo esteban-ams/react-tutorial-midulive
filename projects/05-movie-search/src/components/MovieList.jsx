@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { MoviePoster } from "./Movies";
 
 function MovieList({ movies }) {
@@ -16,8 +17,20 @@ function MovieList({ movies }) {
 
 
 function NoMovieResults() {
+    // const isFirstRender = useRef(true)
+
     return (
-        <p>Ningun resultado encontrado</p>
+        <>
+            {/* {
+                isFirstRender
+                    ? (
+                        <p className="no-movie-results">No more movies to show</p>
+                    )
+                    : { isFirstRender.current = false }
+            } */}
+            <p className="no-movie-results">No movies to show</p>
+        </>
+
     )
 }
 

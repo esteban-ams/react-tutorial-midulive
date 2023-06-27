@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 export function useSearch() {
+    // export function useSearch({ isFirstRender }) {
     const [search, updateSearch] = useState('')
     const [error, setError] = useState(null)
     const isFirstRender = useRef(true)
